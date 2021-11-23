@@ -7,6 +7,7 @@ using System.Text;
 
 public class Trainee : RegisteredUser {
 
+    public static sealed filePath = "";
 
     public Trainee(string name, string lastName, long jmbg, EGender gender, Address address, string email, string password) 
         : base(name, lastName, jmbg, gender, address, email, password)
