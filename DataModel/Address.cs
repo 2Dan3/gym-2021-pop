@@ -4,27 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SR36_2020_POP2021
+namespace SR36_2020_POP2021.DataModel
 {
-    public class Address
+    public class Address 
     {
-        public Address(long id, string streetName, int streetNum, string city, string state)
+        public Address() { }
+
+        public string Id { get; set; }
+
+        public string StreetName { get; set; }
+
+        public string StreetNum { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+        public override string ToString()
         {
-            this.Id = id;
-            this.StreetName = streetName;
-            this.StreetNum = streetNum;
-            this.City = city;
-            this.State = state;
+        return Id + ";" + StreetName + ";" + StreetNum + ";" + City + ";" + State;
         }
-
-        private long Id { get; set; }
-
-        private string StreetName { get; set; }
-
-        private int StreetNum { get; set; }
-
-        private string City { get; set; }
-
-        private string State { get; set; }
     }
+
+    
 }

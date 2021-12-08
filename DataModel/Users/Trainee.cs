@@ -5,20 +5,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Trainee : RegisteredUser {
+namespace SR36_2020_POP2021.DataModel.Users {
 
-    public static sealed filePath = "";
-
-    public Trainee(string name, string lastName, long jmbg, EGender gender, Address address, string email, string password) 
-        : base(name, lastName, jmbg, gender, address, email, password)
-    {
-    }
-
-    public List<Training> trainings;
+    public class Trainee : RegisteredUser {
 
 
-    public override void CancelTraining(Training training)
-    {
-        // TODO implement here
+        public Trainee()
+        {
+        }
+
+        public List<Training> trainings;
+
+
+        public override void CancelTraining(Training training)
+        {
+            // TODO implement here
+        }
+
+        public override string ToString()
+        {
+            return Name + ";" + LastName + ";" + Jmbg + ";" + Gender + ";" + Address.Id + ";" + Email + ";" + Password + ";" + Deleted;
+
+
+        }
+
+
+        public Trainee Clone()
+        {
+            Trainee copyTr = new Trainee();
+            copyTr.Name = Name;
+            copyTr.LastName = LastName;
+            copyTr.Jmbg = Jmbg;
+            copyTr.Gender = Gender;
+            copyTr.Email = Email;
+            copyTr.Password = Password;
+            copyTr.Deleted = Deleted;
+/* */            copyTr.Address = Address;
+
+            return copyTr;
+        }
     }
 }

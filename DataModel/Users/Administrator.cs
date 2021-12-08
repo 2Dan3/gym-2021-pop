@@ -5,18 +5,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public class Administrator : RegisteredUser {
+namespace SR36_2020_POP2021.DataModel.Users {
 
-    public static sealed filePath = "";
+    public class Administrator : RegisteredUser {
 
-    public Administrator(string name, string lastName, long jmbg, EGender gender, Address address, string email, string password)
-        : base(name, lastName, jmbg, gender, address, email, password)
-    {
+        
+
+        public Administrator()
+        {
+        }
+
+        public override void CancelTraining(Training training)
+        {
+            // TODO implement here
+        }
+
     }
-
-    public override void CancelTraining(Training training)
-    {
-        // TODO implement here
-    }
-
 }

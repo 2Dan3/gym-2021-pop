@@ -11,8 +11,8 @@
         <Label Content="Lozinka >> " Margin="71,97,606,294"/>
         <TextBox x:Name="tbUsername" Margin="242,58,359,347" Background="LightGray"/>
         <PasswordBox x:Name="pbPassword" Margin="201,101,359,304" Background="LightGray"/>
-        <ComboBox Name="cbRole" Width="300" Height="100">
-            <ComboBoxItem Content=""
+        <ComboBox Name="cbRole" Margin="71,153,538,244">
+            <ComboBoxItem Content=""/>
         </ComboBox>
         <Button x:Name="btnLogin" Content="Prijavi me" Margin="321,161,359,244" Click="BtnLogin_Click" IsDefault="True" Background="CornflowerBlue" Foreground="AntiqueWhite" FontWeight="Bold"/>
     </Grid>

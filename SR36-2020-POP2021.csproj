@@ -55,11 +55,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UI\AddEditTrainee.xaml.cs">
+      <DependentUpon>AddEditTrainee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TraineesWindow.xaml.cs">
+      <DependentUpon>TraineesWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="UI\AddEditTrainee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\InstructorsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -67,14 +81,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ERoles.cs" />
+    <Compile Include="DataModel\Address.cs" />
+    <Compile Include="DataModel\EGender.cs" />
+    <Compile Include="DataModel\ERoles.cs" />
+    <Compile Include="DataModel\FitnessCenter.cs" />
+    <Compile Include="DataModel\ITrainingEditor.cs" />
+    <Compile Include="DataModel\IUserEditor.cs" />
+    <Compile Include="DataModel\Training.cs" />
+    <Compile Include="DataModel\Users\Administrator.cs" />
+    <Compile Include="DataModel\Users\Instructor.cs" />
+    <Compile Include="DataModel\Users\RegisteredUser.cs" />
+    <Compile Include="DataModel\Users\Trainee.cs" />
+    <Compile Include="Exceptions\UserNotFoundException.cs" />
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <Compile Include="UI\InstructorsWindow.xaml.cs">
+      <DependentUpon>InstructorsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\TraineesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -101,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Files\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

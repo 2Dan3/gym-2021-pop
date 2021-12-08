@@ -12,27 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SR36_2020_POP2021
+namespace SR36_2020_POP2021.UI
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for AddEditTrainee.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class AddEditTrainee : Window
     {
-        public Login()
+        public AddEditTrainee()
         {
             InitializeComponent();
-        }
-
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Uspeh!");
-            /*string filePath;
-
-            if (cbRole.SelectedItem.Equals(ERoles.POLAZNIK))
-            {
-                filePath = Trainee.filePath;
-            }*/
         }
     }
 }

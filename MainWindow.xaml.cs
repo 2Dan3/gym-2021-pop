@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SR36_2020_POP2021.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,29 +11,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SR36_2020_POP2021
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class MainWindow : Window
     {
-        public Login()
+        public MainWindow()
         {
             InitializeComponent();
-        }
+            this.Hide();
+            new InstructorsWindow().Show();
 
-        private void BtnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("Uspeh!");
-            /*string filePath;
-
-            if (cbRole.SelectedItem.Equals(ERoles.POLAZNIK))
-            {
-                filePath = Trainee.filePath;
-            }*/
+            this.Close();
         }
     }
 }
