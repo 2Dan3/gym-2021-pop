@@ -61,6 +61,7 @@
     <Compile Include="UI\TraineesWindow.xaml.cs">
       <DependentUpon>TraineesWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Validations\EmailValidation.cs" />
     <Page Include="UI\AddEditTrainee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,7 +138,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Files\" />
+    <Resource Include="Files\addresses.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Files\trainees.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Files\instructors.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

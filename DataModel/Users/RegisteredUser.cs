@@ -8,7 +8,7 @@ using System.Text;
 namespace SR36_2020_POP2021.DataModel.Users
 {
 
-    public abstract class RegisteredUser : /*IUserEditor,*/ ITrainingEditor
+    public abstract class RegisteredUser : ITrainingEditor /*,IUserEditor*/
     {
 
         public RegisteredUser() { }
@@ -51,5 +51,40 @@ namespace SR36_2020_POP2021.DataModel.Users
 
 
         public abstract void CancelTraining(Training training);
+
+
+        public string Error
+        {
+            get
+            {
+                return "message";
+            }
+        }
+
+
+        public string this[string columnName]
+        {
+            get
+            {
+                switch (columnName)
+                {
+                    case "Name":
+                        //if(Ime!=null && Ime.Equals(String.Empty))
+                        if (string.IsNullOrEmpty(Name))
+                        {
+                            return "Ime je obavezno uneti";
+                        }
+                        break;
+                    case "Jmbg":
+                        if (string.IsNullOrEmpty(Jmbg) || FitnessCenter.Instance.Trainees.ToList().Exists(u => u.Jmbg.Equals(this.Jmbg)))
+                        {
+                            return "Jmbg mora biti jedinstven";
+                        }
+                        break;
+                }
+
+                return String.Empty;
+            }
+        }
     }
 }

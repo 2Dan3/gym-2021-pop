@@ -76,10 +76,11 @@ namespace SR36_2020_POP2021.Services
                 while ((line = file.ReadLine()) != null)
                 {
                     string[] parts = line.Split(';');
+                    int.TryParse(parts[0], out int iD);
 
                     Address addr = new Address()
                     {
-                        Id = parts[0],
+                        Id = iD,
                         StreetName = parts[1],
                         StreetNum = parts[2],
                         City = parts[3],
@@ -98,6 +99,48 @@ namespace SR36_2020_POP2021.Services
                 foreach (Address addr in FitnessCenter.Instance.Addresses)
                 {
                     file.WriteLine(addr.ToString());
+                }
+            }
+        }
+
+        public void ReadInstructors(string filename)
+        {
+            FitnessCenter.Instance.Instructors = new ObservableCollection<Instructor>();
+            using (StreamReader file = new StreamReader(@"../../Files/" + filename))
+            {
+                string line;
+                while ((line = file.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(';');
+
+                    Enum.TryParse(parts[3], out EGender gender);
+                    Boolean.TryParse(parts[7], out Boolean isDeleted);
+                    string addressID = parts[4];
+                    Address adr = FitnessCenter.Instance.Addresses.ToList().Find(ad => ad.Id.Equals(addressID));
+
+                    Instructor i = new Instructor
+                    {
+                        Name = parts[0],
+                        LastName = parts[1],
+                        Jmbg = parts[2],
+                        Gender = gender,
+                        Address = adr,
+                        Email = parts[5],
+                        Password = parts[6],
+                        Deleted = isDeleted
+                    };
+
+                    FitnessCenter.Instance.Instructors.Add(i);
+                }
+            }
+        }
+        public void SaveInstructors(string filename)
+        {
+            using (StreamWriter file = new StreamWriter(@"../../Files/" + filename))
+            {
+                foreach (Instructor i in FitnessCenter.Instance.Instructors)
+                {
+                    file.WriteLine(i.ToString());
                 }
             }
         }

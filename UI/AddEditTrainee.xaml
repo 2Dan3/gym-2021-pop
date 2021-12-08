@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SR36_2020_POP2021.UI"
+        xmlns:validation="clr-namespace:SR36_2020_POP2021.Validations"
         mc:Ignorable="d"
         Title="AddEditTrainee" Height="450" Width="800">
     <Grid>
@@ -13,7 +13,6 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -64,11 +63,11 @@
         </TextBox>
 
 
-        <Label Name="lblTip" Content="Tip" Grid.Row="4" Grid.Column="0"/>
-        <ComboBox Grid.Column="1" Grid.Row="4" Name="ComboTip" SelectedItem="{Binding Path=TipKorisnika}"/>
+        <Label Name="lblGender" Content="Pol" Grid.Row="4" Grid.Column="0"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Name="CBGender" SelectedItem="{Binding Path=Gender}"/>
 
-        <Button Name="btnCancel" Click="btnCancel_Click" Content="Cancel" Grid.Row="6" Grid.Column="0"/>
-        <Button Name="btnOk" Click="btnOk_Click" Content="Ok" Grid.Row="6" Grid.Column="1"/>
+        <Button Name="btnCancel" Click="btnCancel_Click" Content="Odustani" Grid.Row="5" Grid.Column="0"/>
+        <Button Name="btnOk" Click="btnOk_Click" Content="Potvrdi" Grid.Row="5" Grid.Column="1"/>
 
     </Grid>
 </Window>

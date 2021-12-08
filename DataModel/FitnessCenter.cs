@@ -31,12 +31,10 @@ namespace SR36_2020_POP2021.DataModel
             get { return instance; }
         }
 
-        //public ObservableCollection<Instructor> Instructors { get; set; }
-
+        public ObservableCollection<Instructor> Instructors { get; set; }
         public ObservableCollection<Trainee> Trainees { get; set; }
         public ObservableCollection<Address> Addresses { get; set; }
-
-        //public ObservableCollection<Training> Trainings { get; set; }
+        public ObservableCollection<Training> Trainings { get; set; }
 
 
 
@@ -51,22 +49,43 @@ namespace SR36_2020_POP2021.DataModel
         {
 
             Trainees = new ObservableCollection<Trainee>();
-            //Instructors = new ObservableCollection<Instructor>();
-            //Trainings = new ObservableCollection<Training>();
+            Instructors = new ObservableCollection<Instructor>();
+            Trainings = new ObservableCollection<Training>();
             Addresses = new ObservableCollection<Address>();
 
+            ReadEntities("addresses.txt");
+            ReadEntities("trainees.txt");
+
+
+            Trainee testTrainee = new Trainee
+            {
+                Name = "Marko",
+                LastName = "Markovic",
+                Jmbg = "2812001800011",
+                Gender = EGender.MUSKI,
+                Address = new Address(),
+                Email = "marko@gmail.com",
+                Password = "123",
+                Deleted = false
+
+            };
+            FitnessCenter.Instance.Trainees.Add(testTrainee);
 
         }
 
         public void SaveEntities(string filename)
         {
-            if (filename.Contains("trainees"))
+            if (filename.Contains("addresses"))
+            {
+                userService.SaveAddresses(filename);
+            }
+            else if (filename.Contains("trainees"))
             {
                 userService.SaveUsers(filename);
             }
             /*else if (filename.Contains("instructors"))
             {
-                instructorService.SaveUsers(filename);
+                userService.SaveInstructors(filename);
             }*/
         }
 
@@ -80,9 +99,9 @@ namespace SR36_2020_POP2021.DataModel
             {
                 userService.ReadUsers(filename);
             }
-            /*else if (filename.Contains("instruktori"))
+            /*else if (filename.Contains("instructors"))
             {
-                instructorService.ReadUsers(filename);
+                userService.ReadInstructors(filename);
             }*/
         }
 

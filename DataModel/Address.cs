@@ -10,7 +10,7 @@ namespace SR36_2020_POP2021.DataModel
     {
         public Address() { }
 
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string StreetName { get; set; }
 

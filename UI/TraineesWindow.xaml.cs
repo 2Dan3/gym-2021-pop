@@ -27,6 +27,7 @@ namespace SR36_2020_POP2021.UI
         {
             InitializeComponent();
             UpdateView();
+
             view.Filter = CustomFilter;
         }
 
@@ -66,7 +67,7 @@ namespace SR36_2020_POP2021.UI
             this.Hide();
             if (!(bool)addEditTrainee.ShowDialog())
             {
-     /* */           //addEditTrainee.Show();
+ 
             }
             this.Show();
         }
