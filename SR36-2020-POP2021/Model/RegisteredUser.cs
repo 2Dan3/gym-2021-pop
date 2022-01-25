@@ -25,11 +25,11 @@ namespace SR36_2020_POP2021.Model
         public string LastName { get; set; }
 
 
-        [Column(Name = "jmbg", CanBeNull = true)]
-        public string Jmbg { get; set; }
+       // [Column(Name = "jmbg", CanBeNull = true)]
+        public long Jmbg { get; set; }
 
 
-        [Column(Name = "pol", CanBeNull = true)]
+        //[Column(Name = "pol", CanBeNull = true)]
         public EGender Gender { get; set; }
 
 
@@ -63,7 +63,7 @@ namespace SR36_2020_POP2021.Model
             old.Gender = Gender;
             old.Password = Password;
             old.Deleted = Deleted;
-            // TODO old.UserType = UserType;
+            // TODO old.Type = Type;
 
             return old;
         }

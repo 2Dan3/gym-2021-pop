@@ -26,7 +26,8 @@ namespace SR36_2020_POP2021
             InitializeComponent();
 
             this.Hide();
-            new TraineesWindow().Show();
+            TraineesWindow tw = new TraineesWindow();
+            tw.Show();
 
             this.Close();
 

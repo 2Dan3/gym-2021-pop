@@ -1,4 +1,4 @@
-﻿using SR36_2020_POP2021.Services;
+﻿//using SR36_2020_POP2021.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,8 +13,8 @@ namespace SR36_2020_POP2021.Model
     {
 
         public const string CONNECTION_STRING = @"Integrated Security=true;
-        InitialCatalog=fitness_center;
-        Data Source=DESKTOP-BS3GDCJ";
+        Initial Catalog=fitness_center;
+        Data Source=desktop-bs3gdcj\sqlexpress";
 
         private static readonly FitnessCenter instance = new FitnessCenter();
         /* private IUserService userService;*/
@@ -26,7 +26,7 @@ namespace SR36_2020_POP2021.Model
 
         private FitnessCenter()
         {
-            /* userService = new UserService();*/
+            // userService = new UserService();
             //instructorService = new InstructorService();
         }
 
@@ -38,7 +38,8 @@ namespace SR36_2020_POP2021.Model
             get { return instance; }
         }
 
-        public ObservableCollection<RegisteredUser> RegisteredUsers { get; set; }
+        //public ObservableCollection<RegisteredUser> RegisteredUsers { get; set; }
+        public List<RegisteredUser> RegisteredUsers { get; set; }
         public ObservableCollection<Instructor> Instructors { get; set; }
         public ObservableCollection<Trainee> Trainees { get; set; }
         public ObservableCollection<Address> Addresses { get; set; }
@@ -55,10 +56,12 @@ namespace SR36_2020_POP2021.Model
 
         public void Initialize()
         {
-            Table<RegisteredUser> rUsers = dbdc.GetTable<RegisteredUser>();
+            //Table<RegisteredUser> rUsers = Dbdc.GetTable<RegisteredUser>();
 /*Postupni Convert */            
-            List<RegisteredUser> listOfUsers = rUsers.ToList();
-            RegisteredUsers = new ObservableCollection<RegisteredUser>(listOfUsers);
+            //List<RegisteredUser> listOfUsers = rUsers.ToList();
+            //RegisteredUsers = new ObservableCollection<RegisteredUser>(listOfUsers);
+            //RegisteredUsers = rUsers.ToList();
+/* */            RegisteredUsers = new List<RegisteredUser>();
             Trainees = new ObservableCollection<Trainee>();
             Instructors = new ObservableCollection<Instructor>();
             Trainings = new ObservableCollection<Training>();
@@ -67,12 +70,12 @@ namespace SR36_2020_POP2021.Model
             //ReadEntities("addresses.txt");
             //ReadEntities("trainees.txt");
 
-
-            RegisteredUser testUser1 = new RegisteredUser
+// OTKOM TEST PODATKE
+            /*RegisteredUser testUser1 = new RegisteredUser
             {
                 Name = "Marko",
                 LastName = "Markovic",
-                Jmbg = "2812001800011",
+                Jmbg = 2812001800011,
                 Gender = EGender.M,
                 //Address = new Address(),
                 Email = "marko@gmail.com",
@@ -86,7 +89,7 @@ namespace SR36_2020_POP2021.Model
             {
                 Name = "Darko",
                 LastName = "Darkovic",
-                Jmbg = "3132001800011",
+                Jmbg = 3132001800011,
                 Gender = EGender.M,
                 //Address = new Address(),
                 Email = "darko@gmail.com",
@@ -94,7 +97,7 @@ namespace SR36_2020_POP2021.Model
                 Deleted = "N"
 
             };
-            RegisteredUsers.Add(testUser2);
+            RegisteredUsers.Add(testUser2);*/
 
 
             /*Trainee testTrainee1 = new Trainee

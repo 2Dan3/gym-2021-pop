@@ -56,8 +56,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Services\IUserService.cs" />
-    <Compile Include="Services\UserService.cs" />
     <Compile Include="UI\AddEditTrainee.xaml.cs">
       <DependentUpon>AddEditTrainee.xaml</DependentUpon>
     </Compile>
@@ -139,6 +137,8 @@
   <ItemGroup>
     <Resource Include="Files\trainees.txt" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

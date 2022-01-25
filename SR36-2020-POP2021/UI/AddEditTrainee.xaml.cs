@@ -62,7 +62,7 @@ namespace SR36_2020_POP2021.UI
                     {
                         Name = txtName.Text,
                         LastName = txtLastName.Text,
-                        Jmbg = txtJmbg.Text,
+                        Jmbg = long.Parse(txtJmbg.Text),
                         Gender = (EGender)CBGender.SelectedItem,
                         Email = txtEmail.Text,
                         Password = "123",

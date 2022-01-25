@@ -1,4 +1,5 @@
-﻿using SR36_2020_POP2021.Model;
+﻿using SR36_2020_POP2021;
+using SR36_2020_POP2021.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,7 @@ namespace SR36_2020_POP2021.UI
         private bool CustomFilter(object obj)
         {
             RegisteredUser ru = obj as RegisteredUser;
-            //*TODO* Dodati proveru da li je type.equals("trainee")
+            //*TODO* Dodati proveru da li je type.equals("TRAINEE")
             if (ru.Deleted.Equals("N"))
             {
                 if (txtSearchBar.Text != "")
@@ -48,7 +49,37 @@ namespace SR36_2020_POP2021.UI
         private void UpdateView()
         {
             DGTrainees.ItemsSource = null;
-            view = CollectionViewSource.GetDefaultView(FitnessCenter.Instance.RegisteredUsers);
+            //view = CollectionViewSource.GetDefaultView(FitnessCenter.Instance.RegisteredUsers);
+            view = CollectionViewSource.GetDefaultView(FitnessCenter.Instance.Dbdc.GetTable<RegisteredUser>().ToList());
+            /*List<RegisteredUser> lk = new List<RegisteredUser>();
+            RegisteredUser testUser1 = new RegisteredUser
+            {
+                Name = "Marko",
+                LastName = "Markovic",
+                Jmbg = 2812001800011,
+                Gender = EGender.M,
+                //Address = new Address(),
+                Email = "marko@gmail.com",
+                Password = "123",
+                Deleted = "N"
+
+            };
+            lk.Add(testUser1);
+
+            RegisteredUser testUser2 = new RegisteredUser
+            {
+                Name = "Darko",
+                LastName = "Darkevic",
+                Jmbg = 3132001800011,
+                Gender = EGender.M,
+                //Address = new Address(),
+                Email = "darko@gmail.com",
+                Password = "111",
+                Deleted = "N"
+
+            };
+            lk.Add(testUser2);
+            view = CollectionViewSource.GetDefaultView(lk);*/
             DGTrainees.ItemsSource = view;
             DGTrainees.IsSynchronizedWithCurrentItem = true;
 
@@ -101,18 +132,22 @@ namespace SR36_2020_POP2021.UI
             DGTrainees.SelectedItems.Clear();
 
         }
-        /* TODO Otkomentarisi i preradi metodu
-        private void DeleteTrainee_Click(object sender, RoutedEventArgs e)
+
+        private void MIDeleteTrainee_Click(object sender, RoutedEventArgs e)
         {
             RegisteredUser traineeToBeDeleted = view.CurrentItem as RegisteredUser;
-            FitnessCenter.Instance.DeleteUser(traineeToBeDeleted.Jmbg);
+        }
+        // TODO Otkomentarisi i preradi metodu
 
-            int index = FitnessCenter.Instance.RegisteredUsers.ToList().FindIndex(user => user.Jmbg.Equals(traineeToBeDeleted.Jmbg));
-            FitnessCenter.Instance.RegisteredUsers[index].Deleted = "D";
+        //
+        /*FitnessCenter.Instance.DeleteUser(traineeToBeDeleted.Jmbg);
+
+        int index = FitnessCenter.Instance.RegisteredUsers.ToList().FindIndex(user => user.Jmbg.Equals(traineeToBeDeleted.Jmbg));
+        FitnessCenter.Instance.RegisteredUsers[index].Deleted = "D";
 
 
-            UpdateView();
-            view.Refresh();
-        }*/
+        UpdateView();
+        view.Refresh(); */
+
     }
 }
