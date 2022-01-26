@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SR36_2020_POP2021.UI"
         mc:Ignorable="d"
-        Title="Login" Height="450" Width="800">
+        Title="Login" Height="452" Width="800"
+        ResizeMode="NoResize">
     <Grid>
-        <Label Content="Korisnicko ime >> " Margin="71,53,558,343"/>
-        <Label Content="Lozinka >> " Margin="71,97,606,294"/>
-        <TextBox x:Name="tbUsername" Margin="242,58,359,347" Background="LightGray"/>
-        <PasswordBox x:Name="pbPassword" Margin="201,101,359,304" Background="LightGray"/>
-        <ComboBox Name="cbRole" Margin="71,153,538,244">
-            <ComboBoxItem Content=""/>
-        </ComboBox>
-        <Button x:Name="btnLogin" Content="Prijavi me" Margin="321,161,359,244" Click="BtnLogin_Click" IsDefault="True" Background="CornflowerBlue" Foreground="AntiqueWhite" FontWeight="Bold"/>
+        <Label Content="Korisnicko ime >> " MinWidth="150"  MinHeight="35" Margin="71,53,558,343"/>
+        <Label Content="Lozinka >> " MinWidth="130" MinHeight="35" Margin="71,97,606,294"/>
+        <TextBox x:Name="tbUsername" MinWidth="200" MinHeight="33" Margin="242,53,359,347" Background="LightGray"/>
+        <PasswordBox x:Name="pbPassword" MinWidth="240" MinHeight="36" Margin="201,101,359,294" Background="LightGray"/>
+        <Button x:Name="btnLogin" Content="Prijavi me" Width="110" Height="28" Margin="321,161,359,244" Click="BtnLogin_Click" IsDefault="True" Background="CornflowerBlue" Foreground="AntiqueWhite" FontWeight="Bold"/>
+        <Button x:Name="btnRegister" Content="Kreiraj nalog" Width="100" Height="28" Click="BtnRegister_Click" Background="CornflowerBlue" Foreground="AntiqueWhite" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Margin="178,161,510,244"/>
+
+
 
     </Grid>
 </Window>

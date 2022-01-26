@@ -3,6 +3,7 @@ using SR36_2020_POP2021.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,7 +91,13 @@ namespace SR36_2020_POP2021.UI
 
         private void DGTrainees_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
+//* TODO *Doraditi
+
             if (e.PropertyName.Equals("Deleted"))
+            {
+                e.Column.Visibility = Visibility.Collapsed;
+            }
+            if (e.PropertyName.Equals("Error"))
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
@@ -103,6 +110,7 @@ namespace SR36_2020_POP2021.UI
 
         private void AddTrainee_Click(object sender, RoutedEventArgs e)
         {
+//* TODO *Preraditi
             //Trainee tr = new Trainee();
             AddEditTrainee addEditTrainee = new AddEditTrainee(null); //tr
             this.Hide();
@@ -115,6 +123,7 @@ namespace SR36_2020_POP2021.UI
 
         private void ModifyTrainee_Click(object sender, RoutedEventArgs e)
         {
+//* TODO *Preraditi
             RegisteredUser selectedTrainee = view.CurrentItem as RegisteredUser;
 
             RegisteredUser oldTr = selectedTrainee.Clone();
@@ -135,7 +144,17 @@ namespace SR36_2020_POP2021.UI
 
         private void MIDeleteTrainee_Click(object sender, RoutedEventArgs e)
         {
+//* TODO *Check how it's working
             RegisteredUser traineeToBeDeleted = view.CurrentItem as RegisteredUser;
+            
+            Table<RegisteredUser> users = FitnessCenter.Instance.Dbdc.GetTable<RegisteredUser>();
+            IEnumerable<RegisteredUser> res = from u in users where u.Id == traineeToBeDeleted.Id select u;
+            RegisteredUser ru = res.ElementAt(0);
+            ru.Deleted = "D";
+            FitnessCenter.Instance.Dbdc.SubmitChanges();
+
+            UpdateView();
+            view.Refresh();
         }
         // TODO Otkomentarisi i preradi metodu
 

@@ -26,7 +26,9 @@ namespace SR36_2020_POP2021.Model
 
 
        // [Column(Name = "jmbg", CanBeNull = true)]
-        public long Jmbg { get; set; }
+        public long Jmbg { get; set; }/*{ get {; }
+                            set { ; } 
+                          }*/
 
 
         //[Column(Name = "pol", CanBeNull = true)]
@@ -50,7 +52,7 @@ namespace SR36_2020_POP2021.Model
 
 
         [Column(Name = "tip", CanBeNull = true)]
-        private string Type { get; set; }
+        public string Type { get; set; }
 
         public RegisteredUser Clone()
         {
