@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -86,7 +87,19 @@ namespace SR36_2020_POP2021.UI
         }
         private void DeleteTraining_Click(object sender, RoutedEventArgs e)
         {
+            Training trainingToBeDeleted = view.CurrentItem as Training;
 
+            if(trainingToBeDeleted == null) { return; }
+
+            Table<Training> trainings = FitnessCenter.Instance.Dbdc.GetTable<Training>();
+            IEnumerable<Training> res = from t in trainings where t.Tr_id == trainingToBeDeleted.Tr_id select t;
+            Training tr = res.ElementAt(0);
+            tr.Deleted = "D";
+            FitnessCenter.Instance.Dbdc.SubmitChanges();
+
+            UpdateView();
+            view.Filter = CustomFilter;
+            view.Refresh();
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -94,6 +107,20 @@ namespace SR36_2020_POP2021.UI
                 FitnessCenter.Instance.LoggedUser = null;
                 new MainWindow().Show();
                 this.Close();
+        }
+
+        private void ShowUsers_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new TraineesWindow().Show();
+            this.Close();
+        }
+
+        private void ShowInstructors_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new InstructorsWindow().Show();
+            this.Close();
         }
     }
 }

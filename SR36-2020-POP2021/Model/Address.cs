@@ -13,8 +13,8 @@ namespace SR36_2020_POP2021.Model
     {
         public Address() { }
 
-        [Column(IsPrimaryKey = true, Name = "adresa_id", CanBeNull = false)]
-        public int Id { get; set; }
+        [Column(IsPrimaryKey = true, Name = "adresa_id", CanBeNull = false, IsDbGenerated = true)]
+        public int Ad_Id { get; set; }
 
         [Column(Name = "ulica", CanBeNull = false)]
         public string StreetName { get; set; }
@@ -31,7 +31,7 @@ namespace SR36_2020_POP2021.Model
 
         public override string ToString()
         {
-            return Id + ";" + StreetName + ";" + StreetNum + ";" + City + ";" + State;
+            return Ad_Id + ";" + StreetName + ";" + StreetNum + ";" + City + ";" + State;
         }
 
         public Address Clone()

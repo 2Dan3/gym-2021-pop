@@ -27,6 +27,7 @@ namespace SR36_2020_POP2021.UI
         public AddressWindow(RegisteredUser user)
         {
             InitializeComponent();
+            this.DataContext = user.Address;
 
             addressOwner = user;
 
@@ -47,7 +48,7 @@ namespace SR36_2020_POP2021.UI
             DataContext dc = new DataContext(FitnessCenter.CONNECTION_STRING);
             Table<Address> adr = dc.GetTable<Address>();
             
-            IEnumerable<Address> res = from a in adr where a.Id == addressOwner.Address.Id select a;
+            IEnumerable<Address> res = from a in adr where a.Ad_Id == addressOwner.Address.Ad_Id select a;
             Address foundAdr = res.ElementAt(0);
             foundAdr = addressOwner.Address;
             dc.SubmitChanges();

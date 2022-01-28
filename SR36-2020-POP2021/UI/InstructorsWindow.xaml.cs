@@ -34,12 +34,12 @@ namespace SR36_2020_POP2021.UI
         private bool CustomFilter(object obj)
         {
             RegisteredUser ru = obj as RegisteredUser;
-            //*TODO* Dodati proveru da li je type.equals("TRAINEE")
+
             if (ru.Deleted.Equals("N") && ru.Type.Equals("INSTRUCTOR") )
             {
                 if (txtSearchBar.Text != "")
                 {
-                    return ru.Name.Contains(txtSearchBar.Text) || ru.LastName.Contains(txtSearchBar.Text) || ru.Email.Contains(txtSearchBar.Text) || ru.Address.State.Contains(txtSearchBar.Text) || ru.Address.City.Contains(txtSearchBar.Text) || ru.Address.StreetName.Contains(txtSearchBar.Text);
+                    return ru.Name.Contains(txtSearchBar.Text) || ru.LastName.Contains(txtSearchBar.Text) || ru.Email.Contains(txtSearchBar.Text); //|| ru.Address.State.Contains(txtSearchBar.Text) || ru.Address.City.Contains(txtSearchBar.Text) || ru.Address.StreetName.Contains(txtSearchBar.Text);
                 }
                 else
                     return true;
@@ -76,6 +76,10 @@ namespace SR36_2020_POP2021.UI
                 e.Column.Visibility = Visibility.Collapsed;
             }
             if (e.PropertyName.Equals("Password"))
+            {
+                e.Column.Visibility = Visibility.Collapsed;
+            }
+            if (e.PropertyName.Equals("Type"))
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }

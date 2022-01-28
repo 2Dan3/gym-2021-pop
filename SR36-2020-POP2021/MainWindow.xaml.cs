@@ -90,6 +90,10 @@ namespace SR36_2020_POP2021
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
+            if (e.PropertyName.Equals("Type"))
+            {
+                e.Column.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void TxtSearchBar_PreviewKeyUp(object sender, KeyEventArgs e)

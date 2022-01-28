@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
@@ -26,17 +27,21 @@ namespace SR36_2020_POP2021.Model
 
 
         [Column(Name = "jmbg", CanBeNull = true)]
-        public long Jmbg { get; set; }/*{ get {; }
-                            set { ; } 
-                          }*/
+        public long Jmbg { get; set; }
 
 
         [Column(Name = "pol", CanBeNull = true)]
         public string Gender { get; set; }
 
 
-        //[Column(Name = "adresa_id", CanBeNull = true)]
-        public Address Address { get; set; }
+        private EntityRef<Address> address;
+        [Association(Storage = "address", ThisKey = "Id", OtherKey = "Ad_Id", IsForeignKey = true)]
+        public Address Address
+        {
+            get { return this.address.Entity; }
+            set { this.address.Entity = value; }
+        }
+        //public Address Address { get; set; }
 
 
         [Column(Name = "email", CanBeNull = true)]

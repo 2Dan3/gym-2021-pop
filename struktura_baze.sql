@@ -91,29 +91,6 @@ REFERENCES [dbo].[korisnik] ([korisnik_id])
 
 ALTER TABLE [dbo].[trening] CHECK CONSTRAINT [fk_kor_polaz]
 
-USE [fitness_center]
-
-/****** Object:  Table [dbo].[trening_korisnik]    Script Date: 27.1.2022. 18:01:04 ******/
-
-CREATE TABLE [dbo].[trening_korisnik](
-	[trening_id] [int] NOT NULL,
-	[korisnik_id] [int] NOT NULL,
- CONSTRAINT [PK_trening_korisnik] PRIMARY KEY CLUSTERED 
-(
-	[trening_id] ASC,
-	[korisnik_id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-
-ALTER TABLE [dbo].[trening_korisnik]  WITH CHECK ADD  CONSTRAINT [fk_korisnik] FOREIGN KEY([korisnik_id])
-REFERENCES [dbo].[korisnik] ([korisnik_id])
-
-ALTER TABLE [dbo].[trening_korisnik] CHECK CONSTRAINT [fk_korisnik]
-
-ALTER TABLE [dbo].[trening_korisnik]  WITH CHECK ADD  CONSTRAINT [fk_trening] FOREIGN KEY([trening_id])
-REFERENCES [dbo].[trening] ([trening_id])
-
-ALTER TABLE [dbo].[trening_korisnik] CHECK CONSTRAINT [fk_trening]
 
 
 

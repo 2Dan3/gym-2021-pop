@@ -150,7 +150,6 @@ namespace SR36_2020_POP2021.UI
 
         private void MIDeleteTrainee_Click(object sender, RoutedEventArgs e)
         {
-//* TODO *Check how it's working
             RegisteredUser traineeToBeDeleted = view.CurrentItem as RegisteredUser;
             
             Table<RegisteredUser> users = FitnessCenter.Instance.Dbdc.GetTable<RegisteredUser>();
@@ -163,17 +162,18 @@ namespace SR36_2020_POP2021.UI
             view.Filter = CustomFilter;
             view.Refresh();
         }
-        // TODO Otkomentarisi i preradi metodu
-
-        //
-        /*FitnessCenter.Instance.DeleteUser(traineeToBeDeleted.Jmbg);
-
-        int index = FitnessCenter.Instance.RegisteredUsers.ToList().FindIndex(user => user.Jmbg.Equals(traineeToBeDeleted.Jmbg));
-        FitnessCenter.Instance.RegisteredUsers[index].Deleted = "D";
-
-
-        UpdateView();
-        view.Refresh(); */
+        private void BtnAddressInfo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new AddressWindow(FitnessCenter.Instance.LoggedUser).ShowDialog();
+            this.Show();
+        }
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            FitnessCenter.Instance.LoggedUser = null;
+            new MainWindow().Show();
+            this.Close();
+        }
 
     }
 }

@@ -29,6 +29,11 @@ namespace SR36_2020_POP2021.UI
         {
             this.loggedUser = loggedUser;
 
+            if(loggedUser.Type == "INSTRUCTOR")
+            {
+                Menu.Visibility = Visibility.Hidden;
+            }
+
             InitializeComponent();
             UpdateView();
             view.Filter = CustomFilter;
@@ -83,13 +88,26 @@ namespace SR36_2020_POP2021.UI
             view.Refresh();
         }
 
-        private void MakeAppointment_Click(object sender, RoutedEventArgs e)
+        private void MakeOrCancelAppointment_Click(object sender, RoutedEventArgs e)
         {
+            Training selectedTraining = view.CurrentItem as Training;
+            if (selectedTraining == null) { return; }
 
-        }
-        private void CancelAppointment_Click(object sender, RoutedEventArgs e)
-        {
+            DataContext dc = new DataContext(FitnessCenter.CONNECTION_STRING);
+            Table<Training> t = dc.GetTable<Training>();
+            IEnumerable<Training> foundTrainings = from a in t where a.Tr_id == selectedTraining.Tr_id select a;
+            Training foundTraining = foundTrainings.ElementAt(0);
 
+            if (FitnessCenter.Instance.LoggedUser.Type == "TRAINEE" && selectedTraining.Status == "FREE")
+            {
+                foundTraining.Status = "TAKEN";
+                foundTraining.Trainee = FitnessCenter.Instance.LoggedUser;
+            }
+            else if (FitnessCenter.Instance.LoggedUser.Type == "TRAINEE" && selectedTraining.Status == "TAKEN")
+            {
+                foundTraining.Status = "FREE";
+                foundTraining.Trainee = null;
+            }
         }
 
         private void BtnLogout_Click(object sender, RoutedEventArgs e)
@@ -97,6 +115,19 @@ namespace SR36_2020_POP2021.UI
             FitnessCenter.Instance.LoggedUser = null;
             new MainWindow().Show();
             this.Close();
+        }
+        private void BtnAddressInfo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new AddressWindow(FitnessCenter.Instance.LoggedUser).ShowDialog();
+            this.Show();
+        }
+
+        private void ShowAllTrainings_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            new AllTrainingsWindow().Show();
+            this.Show();
         }
     }
 }

@@ -26,11 +26,29 @@ namespace SR36_2020_POP2021.UI
             InitializeComponent();
 
             DataContext dc = new DataContext(FitnessCenter.CONNECTION_STRING);
-            Table<FitnessCenter> fc = dc.GetTable<FitnessCenter>();
+            Table<FitnessCenterInfo> fc = dc.GetTable<FitnessCenterInfo>();
 
-            // *UPIT KA BAZI
+            // *UPIT KA BAZI :
+            IEnumerable<FitnessCenterInfo> res = from f in fc select f;
+            FitnessCenterInfo fitC = res.ElementAt(0);
 
-            if(FitnessCenter.Instance.LoggedUser == null)
+            txtId.Text = fitC.FcId.ToString();
+            txtName.Text = fitC.FcName;
+            /*txtAddressName.Text = fitC.Location.StreetName;
+            txtAddressNum.Text = fitC.Location.StreetNum.ToString();
+            txtCity.Text = fitC.Location.City;
+            txtState.Text = fitC.Location.State;*/
+
+               Table<Address> ad = dc.GetTable<Address>();
+            IEnumerable<Address> ad2 = from a in ad where a.Ad_Id == fitC.Adr_Id_FK select a;
+            var ad3 = ad2.ElementAt(0);
+
+            txtAddressName.Text = ad3.StreetName;
+            txtAddressNum.Text = ad3.StreetNum.ToString();
+            txtCity.Text = ad3.City;
+            txtState.Text = ad3.State;   
+
+            if (FitnessCenter.Instance.LoggedUser == null)
             {
                 txtAddressName.IsEnabled = false;
                 txtAddressNum.IsEnabled = false;

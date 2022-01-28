@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace SR36_2020_POP2021.Model
 {
 
-    [Table(Name = "fitness_center")]
+    
     public sealed class FitnessCenter
     {
 
@@ -53,19 +53,7 @@ namespace SR36_2020_POP2021.Model
         public ObservableCollection<Training> Trainings { get; set; }
 
 
-        [Column(IsPrimaryKey = true, Name = "fitness_id", CanBeNull = false)]
-        public int FcId { get; set; }
-
-        [Column(Name = "naziv", CanBeNull = false)]
-        public string FcName { get; set; }
-
-// *
-        private EntityRef<Address> location;
-        [Association(Storage = "location", ThisKey = "FcId", OtherKey = "Id", IsForeignKey = true)]
-        public Address Location {
-            get { return this.location.Entity; }
-            set { this.location.Entity = value; }
-        }
+        
 
 
         public void Initialize()
