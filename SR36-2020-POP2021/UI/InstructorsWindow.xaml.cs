@@ -31,109 +31,80 @@ namespace SR36_2020_POP2021.UI
             view.Filter = CustomFilter;
         }
 
-            private bool CustomFilter(object obj)
+        private bool CustomFilter(object obj)
+        {
+            RegisteredUser ru = obj as RegisteredUser;
+            //*TODO* Dodati proveru da li je type.equals("TRAINEE")
+            if (ru.Deleted.Equals("N") && ru.Type.Equals("INSTRUCTOR") )
             {
-                RegisteredUser ru = obj as RegisteredUser;
-                //*TODO* Dodati proveru da li je type.equals("TRAINEE")
-                if (ru.Deleted.Equals("N") && ru.Type.Equals("INSTRUCTOR") )
+                if (txtSearchBar.Text != "")
                 {
-                    if (txtSearchBar.Text != "")
-                    {
-                        return ru.Name.Contains(txtSearchBar.Text) || ru.LastName.Contains(txtSearchBar.Text) || ru.Email.Contains(txtSearchBar.Text) || ru.Address.State.Contains(txtSearchBar.Text) || ru.Address.City.Contains(txtSearchBar.Text) || ru.Address.StreetName.Contains(txtSearchBar.Text);
-                    }
-                    else
-                        return true;
+                    return ru.Name.Contains(txtSearchBar.Text) || ru.LastName.Contains(txtSearchBar.Text) || ru.Email.Contains(txtSearchBar.Text) || ru.Address.State.Contains(txtSearchBar.Text) || ru.Address.City.Contains(txtSearchBar.Text) || ru.Address.StreetName.Contains(txtSearchBar.Text);
                 }
-                return false;
+                else
+                    return true;
             }
+            return false;
+        }
 
-            private void UpdateView()
-            {
-                DGInstructors.ItemsSource = null;
+        private void UpdateView()
+        {
+            DGInstructors.ItemsSource = null;
 
-                DataContext dc = new DataContext(FitnessCenter.CONNECTION_STRING);
+            DataContext dc = new DataContext(FitnessCenter.CONNECTION_STRING);
 
-                view = CollectionViewSource.GetDefaultView(dc.GetTable<RegisteredUser>().ToList());
+            view = CollectionViewSource.GetDefaultView(dc.GetTable<RegisteredUser>().ToList());
             
-                DGInstructors.ItemsSource = view;
-                DGInstructors.IsSynchronizedWithCurrentItem = true;
+            DGInstructors.ItemsSource = view;
+            DGInstructors.IsSynchronizedWithCurrentItem = true;
 
-                DGInstructors.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
+            DGInstructors.ColumnWidth = new DataGridLength(1, DataGridLengthUnitType.Star);
 
-                DGInstructors.SelectedItems.Clear();
-            }
+            DGInstructors.SelectedItems.Clear();
+        }
 
-            private void DGInstructors_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void DGInstructors_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            //* TODO *Doraditi
+
+            if (e.PropertyName.Equals("Deleted"))
             {
-                //* TODO *Doraditi
-
-                if (e.PropertyName.Equals("Deleted"))
-                {
-                    e.Column.Visibility = Visibility.Collapsed;
-                }
-                if (e.PropertyName.Equals("Error"))
-                {
-                    e.Column.Visibility = Visibility.Collapsed;
-                }
-                if (e.PropertyName.Equals("Password"))
-                {
-                    e.Column.Visibility = Visibility.Collapsed;
-                }
+                e.Column.Visibility = Visibility.Collapsed;
             }
-
-            private void TxtSearchBar_PreviewKeyUp(object sender, KeyEventArgs e)
+            if (e.PropertyName.Equals("Error"))
             {
-                view.Refresh();
+                e.Column.Visibility = Visibility.Collapsed;
             }
-
-            private void AddInstructor_Click(object sender, RoutedEventArgs e)
+            if (e.PropertyName.Equals("Password"))
             {
-                //* TODO *Preraditi
-                //Trainee tr = new Trainee();
-                AddEditTrainee addEditTrainee = new AddEditTrainee(null); //tr
-                this.Hide();
-                if (!(bool)addEditTrainee.ShowDialog())
-                {
-
-                }
-                this.Show();
-            }
-
-            private void ModifyInstructor_Click(object sender, RoutedEventArgs e)
-            {
-                //* TODO *Preraditi
-                RegisteredUser selectedTrainee = view.CurrentItem as RegisteredUser;
-
-                RegisteredUser oldTr = selectedTrainee.Clone();
-
-                AddEditTrainee addEditTrainee = new AddEditTrainee(selectedTrainee);
-                this.Hide();
-                if (!(bool)addEditTrainee.ShowDialog())
-                {
-                    int index = FitnessCenter.Instance.RegisteredUsers.ToList().FindIndex(u => u.Jmbg.Equals(oldTr.Jmbg));
-                    FitnessCenter.Instance.RegisteredUsers[index] = oldTr;
-                }
-                this.Show();
-
-                view.Refresh();
-                DGInstructors.SelectedItems.Clear();
-
-            }
-
-            private void MIDeleteInstructor_Click(object sender, RoutedEventArgs e)
-            {
-                //* TODO *Check how it's working
-                RegisteredUser instructorToBeDeleted = view.CurrentItem as RegisteredUser;
-
-                Table<RegisteredUser> users = FitnessCenter.Instance.Dbdc.GetTable<RegisteredUser>();
-                IEnumerable<RegisteredUser> res = from u in users where u.Id == instructorToBeDeleted.Id select u;
-                RegisteredUser ru = res.ElementAt(0);
-                ru.Deleted = "D";
-                FitnessCenter.Instance.Dbdc.SubmitChanges();
-
-                UpdateView();
-                view.Filter = CustomFilter;
-                view.Refresh();
+                e.Column.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void TxtSearchBar_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            view.Refresh();
+        }
+
+        private void ShowInstructorProfile_Click(object sender, RoutedEventArgs e)
+        {
+            RegisteredUser selectedInstructor = view.CurrentItem as RegisteredUser;
+
+            if(selectedInstructor == null) return;
+
+            AddEditTrainee aetWindow = new AddEditTrainee(selectedInstructor);
+            this.Hide();
+            
+            aetWindow.ShowDialog();
+                        
+            this.Show();
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            FitnessCenter.Instance.LoggedUser = null;
+            new MainWindow().Show();
+            this.Close();
+        }
+    }
 }

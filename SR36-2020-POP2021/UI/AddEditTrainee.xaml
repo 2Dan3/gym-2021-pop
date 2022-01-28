@@ -66,8 +66,8 @@
         <Label Name="lblGender" Content="Pol" Grid.Row="4" Grid.Column="0"/>
         <ComboBox Grid.Row="4" Grid.Column="1" Name="CBGender" SelectedItem="{Binding Path=Gender}"/>
 
-        <Button Name="btnCancel" Click="btnCancel_Click" Content="Odustani" Grid.Row="5" Grid.Column="0"/>
-        <Button Name="btnOk" Click="btnOk_Click" Content="Potvrdi" Grid.Row="5" Grid.Column="1"/>
+        <Button Name="btnCancel" Click="BtnCancel_Click" Content="Odustani" Grid.Row="5" Grid.Column="0"/>
+        <Button Name="btnOk" Click="BtnOk_Click" Content="Potvrdi" Grid.Row="5" Grid.Column="1"/>
 
     </Grid>
 </Window>

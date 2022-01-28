@@ -31,7 +31,7 @@ namespace SR36_2020_POP2021.Model
                           }*/
 
 
-        //[Column(Name = "pol", CanBeNull = true)]
+        [Column(Name = "pol", CanBeNull = true)]
         public string Gender { get; set; }
 
 

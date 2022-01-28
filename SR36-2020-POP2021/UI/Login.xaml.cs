@@ -67,5 +67,10 @@ namespace SR36_2020_POP2021.UI
 
             this.Close();
         }
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            new MainWindow().Show();
+            this.Close();
+        }
     }
 }

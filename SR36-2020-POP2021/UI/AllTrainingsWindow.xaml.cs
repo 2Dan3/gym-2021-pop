@@ -89,5 +89,11 @@ namespace SR36_2020_POP2021.UI
 
         }
 
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+                FitnessCenter.Instance.LoggedUser = null;
+                new MainWindow().Show();
+                this.Close();
+        }
     }
 }

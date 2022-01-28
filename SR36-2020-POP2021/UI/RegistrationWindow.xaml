@@ -67,7 +67,7 @@
         <Label Name="lblGender" Content="Pol" Grid.Row="4" Grid.Column="0"/>
         <ComboBox Grid.Row="4" Grid.Column="1" Name="cbGender">
             <ComboBoxItem Name="M" Tag="M">M</ComboBoxItem>
-            <ComboBoxItem Name="F" Tag="F">F</ComboBoxItem>
+            <ComboBoxItem Name="Z" Tag="Z">Z</ComboBoxItem>
         </ComboBox>
 
         <Label Name="lblPassword" Content="Lozinka" Grid.Row="5" Grid.Column="0"/>

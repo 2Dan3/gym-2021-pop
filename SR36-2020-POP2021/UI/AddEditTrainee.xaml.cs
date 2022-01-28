@@ -20,10 +20,7 @@ namespace SR36_2020_POP2021.UI
     /// </summary>
     public partial class AddEditTrainee : Window
     {
-        /*public AddEditTrainee()
-        {
-            InitializeComponent();
-        }*/
+        
         private RegisteredUser selectedTrainee;
 
         public AddEditTrainee(RegisteredUser tr)
@@ -34,7 +31,17 @@ namespace SR36_2020_POP2021.UI
 
             selectedTrainee = tr;
 
-            if (tr != null)
+            if (FitnessCenter.Instance.LoggedUser == null || FitnessCenter.Instance.LoggedUser.Type != "ADMIN")
+            {
+                this.Title = "Pregled korisnika";
+                txtName.IsEnabled = false;
+                txtLastName.IsEnabled = false;
+                txtEmail.IsEnabled = false;
+                txtJmbg.IsEnabled = false;
+                CBGender.IsEnabled = false;
+                btnOk.Visibility = Visibility.Hidden;
+            }
+            else if (tr != null)
             {
                 this.Title = "Izmena polaznika";
             }
@@ -44,14 +51,14 @@ namespace SR36_2020_POP2021.UI
             }
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = false;
             this.Close();
 
         }
 
-        private void btnOk_Click(object sender, RoutedEventArgs e)
+        private void BtnOk_Click(object sender, RoutedEventArgs e)
         {
             if (IsValid())
             {
