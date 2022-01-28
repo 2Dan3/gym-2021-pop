@@ -28,10 +28,27 @@ namespace SR36_2020_POP2021.UI
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
             Table<RegisteredUser> users = FitnessCenter.Instance.Dbdc.GetTable<RegisteredUser>();
-            var res = from u in users where (u.Deleted.Equals("N") && u.Jmbg.ToString().Equals(tbUsername.Text) && u.Password.Equals(pbPassword.Password.ToString())) select u;
-//* TODO *Upis korisnika kao trenutno Prijavljenog, dok se ne izloguje : u trenutnoj liniji komentara
-//* TODO *Redirect na, za njegov tip, glavni prozor : u trenutnoj liniji komentara
-            
+            IEnumerable<RegisteredUser> res = from u in users where (u.Deleted.Equals("N") && u.Jmbg.ToString().Equals(tbUsername.Text) && u.Password.Equals(pbPassword.Password.ToString())) select u;
+            //* TODO *Upis korisnika kao trenutno Prijavljenog, dok se ne izloguje : u trenutnoj liniji komentara
+            //* TODO *Redirect na, za njegov tip, glavni prozor : u trenutnoj liniji komentara
+            if (res.Count() == 0)
+            {
+                this.Hide();
+                new Login().Show();
+                this.Close();
+            }
+            else
+            {
+                RegisteredUser loggedUser = res.ElementAt(0);
+                FitnessCenter.Instance.LoggedUser = loggedUser;
+
+                this.Hide();
+                if (loggedUser.Type.Equals("ADMIN")) { new AllTrainingsWindow().Show(); }
+
+                else { new IndividualTrainingsWindow(loggedUser).Show(); }
+                this.Close();
+            }
+
 
             /*string filePath;
 

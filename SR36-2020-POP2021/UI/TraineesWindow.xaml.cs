@@ -51,7 +51,9 @@ namespace SR36_2020_POP2021.UI
         {
             DGTrainees.ItemsSource = null;
             //view = CollectionViewSource.GetDefaultView(FitnessCenter.Instance.RegisteredUsers);
-            view = CollectionViewSource.GetDefaultView(FitnessCenter.Instance.Dbdc.GetTable<RegisteredUser>().ToList());
+            DataContext dc = new DataContext(FitnessCenter.CONNECTION_STRING);
+
+            view = CollectionViewSource.GetDefaultView(dc.GetTable<RegisteredUser>().ToList());
             /*List<RegisteredUser> lk = new List<RegisteredUser>();
             RegisteredUser testUser1 = new RegisteredUser
             {
@@ -98,6 +100,10 @@ namespace SR36_2020_POP2021.UI
                 e.Column.Visibility = Visibility.Collapsed;
             }
             if (e.PropertyName.Equals("Error"))
+            {
+                e.Column.Visibility = Visibility.Collapsed;
+            }
+            if (e.PropertyName.Equals("Password"))
             {
                 e.Column.Visibility = Visibility.Collapsed;
             }
@@ -154,6 +160,7 @@ namespace SR36_2020_POP2021.UI
             FitnessCenter.Instance.Dbdc.SubmitChanges();
 
             UpdateView();
+            view.Filter = CustomFilter;
             view.Refresh();
         }
         // TODO Otkomentarisi i preradi metodu

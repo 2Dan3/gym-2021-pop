@@ -3,18 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.Linq;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SR36_2020_POP2021.Model
 {
+
+    [Table(Name = "fitness_center")]
     public sealed class FitnessCenter
     {
 
         public const string CONNECTION_STRING = @"Integrated Security=true;
         Initial Catalog=fitness_center;
-        Data Source=desktop-bs3gdcj\sqlexpress";
+        Data Source=.\sqlexpress";
+        //desktop-bs3gdcj\sqlexpress
 
         private static readonly FitnessCenter instance = new FitnessCenter();
         /* private IUserService userService;*/
@@ -23,6 +27,9 @@ namespace SR36_2020_POP2021.Model
         DataContext dbdc = new DataContext(CONNECTION_STRING);
 
         public DataContext Dbdc { get { return dbdc; } }
+
+        public RegisteredUser LoggedUser { get; set; }
+
 
         private FitnessCenter()
         {
@@ -46,12 +53,19 @@ namespace SR36_2020_POP2021.Model
         public ObservableCollection<Training> Trainings { get; set; }
 
 
+        [Column(IsPrimaryKey = true, Name = "fitness_id", CanBeNull = false)]
+        public int FcId { get; set; }
 
-        public long Id { get; set; }
+        [Column(Name = "naziv", CanBeNull = false)]
+        public string FcName { get; set; }
 
-        public string Name { get; set; }
-
-        public Address Location { get; set; }
+// *
+        private EntityRef<Address> location;
+        [Association(Storage = "location", ThisKey = "FcId", OtherKey = "Id", IsForeignKey = true)]
+        public Address Location {
+            get { return this.location.Entity; }
+            set { this.location.Entity = value; }
+        }
 
 
         public void Initialize()

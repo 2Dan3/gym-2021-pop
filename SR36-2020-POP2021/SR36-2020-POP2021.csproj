@@ -59,8 +59,17 @@
     <Compile Include="UI\AddEditTrainee.xaml.cs">
       <DependentUpon>AddEditTrainee.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\AddressWindow.xaml.cs">
+      <DependentUpon>AddressWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\AllTrainingsWindow.xaml.cs">
       <DependentUpon>AllTrainingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FCWindow.xaml.cs">
+      <DependentUpon>FCWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\IndividualTrainingsWindow.xaml.cs">
+      <DependentUpon>IndividualTrainingsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\InstructorsWindow.xaml.cs">
       <DependentUpon>InstructorsWindow.xaml</DependentUpon>
@@ -92,7 +101,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\AddressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\AllTrainingsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\FCWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\IndividualTrainingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

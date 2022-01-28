@@ -65,13 +65,17 @@
 
 
         <Label Name="lblGender" Content="Pol" Grid.Row="4" Grid.Column="0"/>
-        <ComboBox Grid.Row="4" Grid.Column="1" Name="cbGender" SelectedItem="{Binding Path=EGender}"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Name="cbGender">
+            <ComboBoxItem Name="M" Tag="M">M</ComboBoxItem>
+            <ComboBoxItem Name="F" Tag="F">F</ComboBoxItem>
+        </ComboBox>
 
         <Label Name="lblPassword" Content="Lozinka" Grid.Row="5" Grid.Column="0"/>
-        <PasswordBox Name="pbPassword" Grid.Row="5" Grid.Column="1"/>
+        <PasswordBox Name="pbPassword" Grid.Row="5" Grid.Column="1" />
+
 
         <Button Name="btnCancel" Click="BtnCancel_Click" Content="Povratak" Grid.Row="6" Grid.Column="0"/>
-        <Button Name="btnConfirm" IsDefault="True" Click="BtnConfirm_Click" Content="Registruj me" Grid.Row="6" Grid.Column="1"/>
+        <Button Name="btnConfirm" IsDefault="True" Click="BtnConfirm_Click" Content="Registruj nalog" Grid.Row="6" Grid.Column="1"/>
         <Label Name="lblJmbgError" Content="" Grid.Column="1" Margin="200,31,0,5" Grid.Row="2"/>
     </Grid>
 </Window>

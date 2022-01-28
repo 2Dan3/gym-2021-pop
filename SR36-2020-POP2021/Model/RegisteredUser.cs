@@ -13,7 +13,7 @@ namespace SR36_2020_POP2021.Model
     {
         public RegisteredUser() { }
 
-        [Column(IsPrimaryKey = true, Name = "korisnik_id", CanBeNull = false)]
+        [Column(IsPrimaryKey = true, Name = "korisnik_id", CanBeNull = true, IsDbGenerated = true)]
         public int Id { get; set; }
 
 
@@ -25,14 +25,14 @@ namespace SR36_2020_POP2021.Model
         public string LastName { get; set; }
 
 
-       // [Column(Name = "jmbg", CanBeNull = true)]
+        [Column(Name = "jmbg", CanBeNull = true)]
         public long Jmbg { get; set; }/*{ get {; }
                             set { ; } 
                           }*/
 
 
         //[Column(Name = "pol", CanBeNull = true)]
-        public EGender Gender { get; set; }
+        public string Gender { get; set; }
 
 
         //[Column(Name = "adresa_id", CanBeNull = true)]
@@ -57,14 +57,14 @@ namespace SR36_2020_POP2021.Model
         public RegisteredUser Clone()
         {
             RegisteredUser old = new RegisteredUser();
-            old.Name = Name;
-            old.LastName = LastName;
-            old.Jmbg = Jmbg;
-            old.Address = Address;
-            old.Email = Email;
-            old.Gender = Gender;
-            old.Password = Password;
-            old.Deleted = Deleted;
+            old.Name = this.Name;
+            old.LastName = this.LastName;
+            old.Jmbg = this.Jmbg;
+            old.Address = this.Address;
+            old.Email = this.Email;
+            old.Gender = this.Gender;
+            old.Password = this.Password;
+            old.Deleted = this.Deleted;
             // TODO old.Type = Type;
 
             return old;

@@ -57,27 +57,27 @@ namespace SR36_2020_POP2021.UI
             {
                 if (selectedTrainee == null)
                 {
-                    //*TODO* Change this
-                    RegisteredUser t = new RegisteredUser
-                    {
-                        Name = txtName.Text,
-                        LastName = txtLastName.Text,
-                        Jmbg = long.Parse(txtJmbg.Text),
-                        Gender = (EGender)CBGender.SelectedItem,
-                        Email = txtEmail.Text,
-                        Password = "123",
-                        Deleted = "N",
-                        Address = new Address
-                        {
-                            Id = (int)FitnessCenter.Instance.Addresses[-1].Id + 1,
-                            City = "Novi Sad",
-                            State = "Srbija",
-                            StreetName = "Veselina Maslese",
-                            StreetNum = "10"
-                        }
+                    //*TODO* Change this !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!~!!!!!!!!!!
+                    /*   RegisteredUser t = new RegisteredUser
+                       {
+                           Name = txtName.Text,
+                           LastName = txtLastName.Text,
+                           Jmbg = long.Parse(txtJmbg.Text),
+                           Gender = (EGender)CBGender.SelectedItem,
+                           Email = txtEmail.Text,
+                           Password = "123",
+                           Deleted = "N",
+                           Address = new Address
+                           {
+                               Id = (int)FitnessCenter.Instance.Addresses[-1].Id + 1,
+                               City = "Novi Sad",
+                               State = "Srbija",
+                               StreetName = "Veselina Maslese",
+                               StreetNum = "10"
+                           }
 
-                    };
-                    FitnessCenter.Instance.RegisteredUsers.Add(t);
+                       };
+                       FitnessCenter.Instance.RegisteredUsers.Add(t);*/
                 }
 
                 //*TODO*  umesto ovoga ispod poziv dbdc.submitChanges();
